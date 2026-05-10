@@ -17,6 +17,19 @@ char* token_type_to_string(TokenType type) {
         return "TOKEN_LEFT_BRACE";
     case TOKEN_RIGHT_BRACE:
         return "TOKEN_RIGHT_BRACE";
+
+    case TOKEN_KEYWORD:
+        return "TOKEN_KEYWORD";
+    case TOKEN_IDENTIFIER:
+        return "TOKEN_IDENTIFIER";
+    case TOKEN_NUMBER:
+        return "TOKEN_NUMBER";
+    case TOKEN_SEMICOLON:
+        return "TOKEN_SEMICOLON";
+    case TOKEN_UNKNOWN:
+        return "TOKEN_UNKNOWN";
+    default:
+        return "Unknown token";
     }
 }
 

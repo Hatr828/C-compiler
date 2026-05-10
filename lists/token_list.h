@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stddef.h>
-#include "../compiler/token.h"
+#include "compiler/lexer/token.h"
 
 typedef struct {
     Token* items;

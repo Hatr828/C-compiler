@@ -10,9 +10,13 @@ typedef enum {
     TOKEN_LEFT_BRACKET, // [
     TOKEN_RIGHT_BRACKET, // ]
 
+    TOKEN_SEMICOLON, // ;
+
     TOKEN_KEYWORD,
     TOKEN_IDENTIFIER,
-    TOKEN_NUMBER
+    TOKEN_NUMBER,
+
+    TOKEN_UNKNOWN
 
 } TokenType;
 

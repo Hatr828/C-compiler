@@ -1,13 +1,13 @@
 CC = gcc
 
-CFLAGS = -Wall -Wextra -g -Icompiler -ILists
+CFLAGS = -Wall -Wextra -g -I.
 LDFLAGS = -fsanitize=address
 
 TARGET = main
 
 SRC = main.c \
-      compiler/lexer.c \
-      compiler/token.c \
+      compiler/lexer/lexer.c \
+      compiler/lexer/token.c \
       lists/token_list.c
 
 OBJ = $(SRC:.c=.o)
