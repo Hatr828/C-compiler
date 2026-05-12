@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Wall -Wextra -g -I.
+CFLAGS = -Wall -Wextra -g -O0 -fno-omit-frame-pointer -I.
 LDFLAGS = -fsanitize=address
 
 TARGET = main
@@ -8,7 +8,9 @@ TARGET = main
 SRC = main.c \
       compiler/lexer/lexer.c \
       compiler/lexer/token.c \
-      lists/token_list.c
+	  compiler/parser/parser.c \
+      compiler/parser/statement.c \
+      lists/list.c
 
 OBJ = $(SRC:.c=.o)
 

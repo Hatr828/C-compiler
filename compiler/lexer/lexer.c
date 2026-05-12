@@ -6,13 +6,13 @@
 int get_word(const char* code);
 TokenType get_single_character_token_type(const char c);
 bool is_keyword(const char* data, size_t length);
-bool is_character(const char c);
-bool is_digit(const char c);
+bool is_character(unsigned const char c);
+bool is_digit(unsigned const char c);
 
-TokenList* lexer_run(const char* code) {
+List* lexer_run(const char* code) {
     int offset = 0;
 
-    TokenList* list = token_list_create(20);
+    List* list = list_create(20, sizeof(Token));
 
     while(code[offset] != '\0') {
         char c = code[offset];
@@ -24,7 +24,8 @@ TokenList* lexer_run(const char* code) {
         TokenType type = get_single_character_token_type(code[offset]);
 
         if(type != TOKEN_UNKNOWN) {
-            token_list_add(list, token_create(type, code + offset, 1));
+            Token t = token_create(type, code + offset, 1);
+            list_add(list, &t);
             offset++;
             continue;
         }
@@ -37,18 +38,21 @@ TokenList* lexer_run(const char* code) {
         }
 
         if(is_keyword(code + offset, offset2)) {
-            token_list_add(list, token_create(TOKEN_KEYWORD, code + offset, offset2));
+            Token t = token_create(TOKEN_KEYWORD, code + offset, offset2);
+            list_add(list, &t);
             offset += offset2;
             continue;
         }
 
         if(is_character(code[offset])) {
-            token_list_add(list, token_create(TOKEN_IDENTIFIER, code + offset, offset2));
+            Token t = token_create(TOKEN_IDENTIFIER, code + offset, offset2);
+            list_add(list, &t);
             offset += offset2;
             continue;
         }
         else {
-            token_list_add(list, token_create(TOKEN_NUMBER, code + offset, offset2));
+            Token t = token_create(TOKEN_NUMBER, code + offset, offset2);
+            list_add(list, &t);
             offset += offset2;
             continue;
         }
@@ -115,12 +119,13 @@ bool is_keyword(const char* data, size_t length) {
     }
 }
 
-bool is_character(const char c) {
-    return (c >= 'a' && c <= 'z') ||
-           (c >= 'A' && c <= 'Z') ||
+bool is_character(unsigned char c) {
+    return (unsigned)(c - 'a') <= 25 ||
+           (unsigned)(c - 'A') <= 25 ||
            c == '_';
+
 }
 
-bool is_digit(const char c) {
-    return c >= '0' && c <= '9';
+bool is_digit(unsigned const char c) {
+    return (unsigned)(c - '0') <= 9;
 }

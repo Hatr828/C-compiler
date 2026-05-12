@@ -1,6 +1,5 @@
 #pragma once
 
-#include "compiler/lexer/lexer.h"
-#include "lists/token_list.h"
+#include "lists/list.h"
 
-TokenList* lexer_run(const char* code);
+List* lexer_run(const char* code);

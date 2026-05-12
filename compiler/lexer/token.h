@@ -22,7 +22,7 @@ typedef enum {
 
 typedef struct {
     TokenType tokenType;
-    const char* data;
+    char* data;
     size_t length;
 } Token;
 
